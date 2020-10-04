@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Project</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div id="element" class="container mt-5">
+        <div :class="['p-2','text-white',bgColor]">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt dicta pariatur, rem, reprehenderit officiis autem ea cumque quae repudiandae voluptates ullam provident vitae et obcaecati iure doloribus perferendis! Labore, officia!
+        </div>
+        <input type="text" v-model="bgColor">
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const contentConstant = new Vue({
+            el:"#element",
+            data:{
+                bgColor:"bg-warning",
+            }
+        });
+    </script>
+</body>
+</html>

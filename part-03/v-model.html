@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Project</title>
+</head>
+<body>
+    <div id="element">
+        {{content}}
+        <input type="text" v-model="newLanguage" @keyup.enter="addLanguage" placeholder="New Language">
+        <input type="text" v-model="newLink" @keyup.enter="addLanguage" placeholder="New Link">
+        <span>Press Enter to Add a new Language</span>
+        <ul>
+            <li v-for="language of languages">
+                <a :href="language.link" target="_blank">{{language.name}}</a>
+                <span>{{language.points}}</span>
+                <button @click="language.points++">Add Point</button>
+                <button @click="language.points--">Substract Point</button>
+            </li>
+        </ul>
+        {{addTotal}}
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const contentConstant = new Vue({
+            el:'#element',
+            data: {
+                content: "Hello World",
+                languages : [
+                    {name:"JavaScript",link:"https://www.javascript.com",points:0},
+                    {name:"VueJS",link:"https://www.vuejs.org",points:0},
+                    {name:"PHP",link:"https://www.php.net",points:0},
+                ],
+                newLanguage:"",
+                newLink:"",
+                newPoints:0,
+                total:0
+            },
+            methods: {
+                addLanguage(){
+                    this.languages.push({
+                        name:this.newLanguage,
+                        link:this.newLink,
+                        points:this.newPoints});
+                    this.newLanguage = "";
+                    this.newLink = "";
+                }
+            },
+            computed:{
+                addTotal(){
+                    newTotal = 0;
+                    for(language of this.languages){
+                        newTotal = newTotal + language.points;
+                    }
+                    this.total = newTotal
+                    return this.total;
+                }
+            }
+        })
+    </script>
+</body>
+</html>

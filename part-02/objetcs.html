@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Project</title>
+</head>
+<body>
+    <div id="element">
+        {{content}}
+        <ul>
+            <li v-for="language of languages"><a :href="language.link" target="_blank">{{language.name}}</a></li>
+        </ul>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const contentConstant = new Vue({
+            el:'#element',
+            data: {
+                content: "Hello World",
+                languages : [
+                    {name:"JavaScript",link:"https://www.javascript.com"},
+                    {name:"VueJS",link:"https://www.vuejs.org"},
+                    {name:"PHP",link:"https://www.php.net"},
+                ]
+            }
+        })
+    </script>
+</body>
+</html>
