@@ -9,39 +9,31 @@
 <body>
     <div id="element" class="container mt-5">
         <h3>Nested Components</h3>
-       <father-component></father-component>
+       <father-component class="bg-dark container"></father-component>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
     <script>
         Vue.component('father-component',{
         template: /*html*/
             `<div>
-                <h4>{{number}}</h4>
-                <button class="btn btn-success" @click="number++">+</button>        
+                <input type="text" class="form-control col-md-4 offset-md-4" v-model="numberInput" >
+                <child-component class="bg-danger text-white text-center" :number="numberInput"></child-component>       
             </div>`,
             data(){
                 return{
-                    number:0
+                    numberInput:0
                 }
             }
         })
         Vue.component('child-component',{
         template: /*html*/
             `<div>
-                <h4>{{number}}</h4>
-                <button class="btn btn-success" @click="number++">+</button>        
+                <h4>{{number}}</h4>       
             </div>`,
-            data(){
-                return{
-                    number:0
-                }
-            }
+            props:['number']
         })
         const contentConstant = new Vue({
-            el:"#element",
-            data:{
-                number:5
-            }
+            el:"#element"
         });
     </script>
 </body>
