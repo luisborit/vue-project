@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Project</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div id="element" class="container mt-5">
+        <h3>Vuex</h3>
+       <father-component class="p-5 bg-info container text-white"></father-component>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vuex@2.0.0"></script>
+    <script>
+        Vue.component('father-component',{
+        template: /*html*/
+            `<div>
+                <h5>Number: {{$store.state.number}}</h5>
+                <button class="btn btn-success" @click="$store.commit('sum')">+</button>
+                <child-component></child-component>       
+            </div>`,
+        })
+
+        Vue.component('child-component',{
+        template: /*html*/
+            `<div class="p-5 bg-danger text-white"> 
+            </div>`,
+        })
+
+        const store = new Vuex.Store({
+            state:{
+                number:"42",
+            },
+            mutations:{
+                sum(state){
+                    state.number++;
+                }
+            }
+        });
+
+        const contentConstant = new Vue({
+            el:"#element",
+            store:store
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Project</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div id="element" class="container mt-5">
+        <h3>Data Back Nested Components</h3>
+       <father-component class="bg-dark container"></father-component>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        Vue.component('father-component',{
+        template: /*html*/
+            `<div>
+                <input type="text" class="form-control col-md-4 offset-md-4" v-model="numberInput" >
+                <span class="text-white">{{returningVaribale}}</span>
+                <child-component class="bg-danger text-white text-center" :number="numberInput" @returning="returningVaribale=$event"></child-component>       
+            </div>`,
+            data(){
+                return{
+                    numberInput:0,
+                    returningVaribale:""
+                }
+            }
+        })
+        Vue.component('child-component',{
+        template: /*html*/
+            `<div>
+                <h4>{{number}}</h4>       
+            </div>`,
+            props:['number'],
+            data(){
+                return {
+                    dataReturned:'Returned!'
+                }
+            },
+            mounted(){
+                this.$emit('returning',this.dataReturned);
+            }
+        })
+        const contentConstant = new Vue({
+            el:"#element"
+        });
+    </script>
+</body>
+</html>
