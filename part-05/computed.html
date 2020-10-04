@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Project</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div id="element" class="container mt-5">
+        <h4 class="text-center">{{textElement}}</h4>
+        <h4 class="text-center">{{textElementReversed}}</h4>
+        <div class="col-md-6 offset-md-3">
+            <input type="text" v-model="textElement" class="form-control">
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const contentConstant = new Vue({
+            el:"#element",
+            data:{
+                textElement:"la ruta natural"
+            },
+            computed:{
+                textElementReversed(){
+                    return this.textElement.split('').reverse().join('');
+                }
+            }
+        });
+    </script>
+</body>
+</html>

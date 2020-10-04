@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue Project</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div id="element" class="container mt-5">
+        <div class="progress">
+            <div class="progress-bar"
+            role="progressbar"
+            aria-valuemin="0"
+            aria-valuemax="100"
+            :style="{width:barCounter+'%'}"
+            :class="progressType">
+                {{barCounter}}
+            </div>
+        </div>
+        <button class="btn btn-success" @click="barCounter++">+</button>
+        <button class="btn btn-danger" @click="barCounter--">-</button>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <script>
+        const contentConstant = new Vue({
+            el:"#element",
+            data:{
+                barCounter:5
+            },
+            computed:{
+                progressType(){
+                    return {
+                        'bg-danger':this.barCounter <=10,
+                        'bg-info':this.barCounter > 10 && this.barCounter <20,
+                        'bg-success':this.barCounter >=20,
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
